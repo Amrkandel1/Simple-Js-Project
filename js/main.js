@@ -13,7 +13,7 @@ if(localStorage.getItem("allWebsitesInfo")!=null){
 }
 
 btnSubmit.addEventListener("click" , function(){
-    if (sitName.classList.contains("is-valid") && siteUrl.classList.contains("is-valid")){       
+    if (sitName.classList.contains("is-valid") && siteUrl.classList.contains("is-valid") && !noRepeate()){       
         var websiteInfo={
             name:sitName.value,
             url:`https://${siteUrl.value}`
@@ -42,6 +42,14 @@ function displayTableContent(){
         `
     }
     tBody.innerHTML=box;
+}
+
+function noRepeate(){
+    for(var i=0 ; i<allWebsitesInfo.length ; i++){
+        if(allWebsitesInfo[i].name.toLowerCase() == sitName.value.toLowerCase()){
+            return true;
+        }
+    }
 }
 
 function deleteItem(index){
